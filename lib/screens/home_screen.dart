@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             child: Icon(
               Icons.school,
-              color: Colors.white,
+              color: Colors.red,
               size: (screenWidth * 0.053),
             ),
           ),
