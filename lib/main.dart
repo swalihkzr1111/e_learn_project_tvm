@@ -1,14 +1,14 @@
-import 'package:e_learn/screens/splash_screen.dart';
+import 'package:e_learn/presentation/screen/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:e_learn/providers/home_provider.dart';
+
+import 'presentation/providers/home_providers.dart';
 
 void main() {
   runApp(
     MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => HomeProvider()),
-      ],
+      providers: [ChangeNotifierProvider(create: (_) => HomeProvider())],
       child: const MyApp(),
     ),
   );
@@ -19,14 +19,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'E-Learn',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        primarySwatch: Colors.blue,
+    return ScreenUtilInit(
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'E-Learn',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          primarySwatch: Colors.blue,
+        ),
+        home: HomeScreen(),
       ),
-      home: const SplashScreen(),
     );
   }
 }
