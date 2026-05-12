@@ -1,3 +1,4 @@
+import 'package:e_learn/presentation/screen/auth/login_screen.dart';
 import 'package:e_learn/presentation/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
           primarySwatch: Colors.blue,
         ),
-        home: HomeScreen(),
+        home: LoginScreen(),
       ),
     );
   }
