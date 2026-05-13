@@ -2,6 +2,7 @@ import 'package:e_learn/presentation/screen/auth/login_screen.dart';
 import 'package:e_learn/presentation/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'presentation/providers/home_providers.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           primarySwatch: Colors.blue,
+          textTheme: GoogleFonts.poppinsTextTheme(),
         ),
         home: LoginScreen(),
       ),
