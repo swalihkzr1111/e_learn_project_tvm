@@ -3,9 +3,17 @@ import 'package:e_learn/presentation/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginScreen extends StatelessWidget {
+import 'forgot_password.dart';
+
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool isLogin = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +46,7 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "Welcome Back",
+                      isLogin ? "Welcome Back" : "Create Account",
                       style: TextStyle(
                         fontSize: 28.sp,
                         fontWeight: FontWeight.bold,
@@ -49,7 +57,9 @@ class LoginScreen extends StatelessWidget {
                     UiSpace.vertical(8),
 
                     Text(
-                      "Sign in to continue learning",
+                      isLogin
+                          ? "Sign in to continue learning"
+                          : "Create an account to get started",
                       style: TextStyle(fontSize: 14.sp, color: Colors.grey),
                     ),
                   ],
@@ -57,7 +67,42 @@ class LoginScreen extends StatelessWidget {
               ),
 
               UiSpace.vertical(40),
+              if (!isLogin) ...[
+                Text(
+                  "Full Name",
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
 
+                UiSpace.vertical(10),
+
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: "Enter your full name",
+                    prefixIcon: Icon(Icons.person_outline),
+                    contentPadding: EdgeInsets.symmetric(vertical: 16.h),
+
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(14.r),
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(14.r),
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(14.r),
+                      borderSide: const BorderSide(color: Colors.deepPurple),
+                    ),
+                  ),
+                ),
+
+                UiSpace.vertical(16),
+              ],
               Text(
                 "Email Address",
                 style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
@@ -126,22 +171,29 @@ class LoginScreen extends StatelessWidget {
               ),
 
               UiSpace.vertical(08),
+              if (isLogin)
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ForgotPasswordScreen(),
+                        ),
+                      );
+                    },
 
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {},
-
-                  child: Text(
-                    "Forgot Password?",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w500,
+                    child: Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
-              ),
 
               UiSpace.vertical(18),
 
@@ -165,7 +217,7 @@ class LoginScreen extends StatelessWidget {
                   ),
 
                   child: Text(
-                    "Sign In",
+                    isLogin ? "Sign In" : "Sign Up",
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
@@ -181,15 +233,21 @@ class LoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don't have an account?",
+                    isLogin
+                        ? "Don't have an account?"
+                        : "Already have an account?",
                     style: TextStyle(fontSize: 13.sp, color: Colors.black87),
                   ),
 
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        isLogin = !isLogin;
+                      });
+                    },
 
                     child: Text(
-                      "Sign Up",
+                      isLogin ? "Sign Up" : "Sign In",
                       style: TextStyle(
                         fontSize: 13.sp,
                         color: Colors.blue,

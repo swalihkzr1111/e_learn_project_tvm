@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/category_section.dart';
 import '../widgets/featured_course_section.dart';
+import 'profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -48,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.white,
       elevation: 0,
       scrolledUnderElevation: 0,
+      automaticallyImplyLeading: false,
       title: Row(
         children: [
           Container(
@@ -100,7 +102,12 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Colors.black87,
             size: 20.sp,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfileScreen()),
+            );
+          },
         ),
         UiSpace.horizontal(6.w),
       ],
